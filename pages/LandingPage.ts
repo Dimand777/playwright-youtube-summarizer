@@ -20,7 +20,7 @@ export class LandingPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.heading = page.locator('h1');
-    this.subtitle = page.locator('p.text-slate-400');
+    this.subtitle = page.locator('p.text-slate-400').first();
     this.urlInput = page.locator('[data-testid="youtube-url-input"]');
     this.submitButton = page.locator('[data-testid="submit-url-btn"]');
     this.clearInputButton = page.locator('form button[type="button"]');

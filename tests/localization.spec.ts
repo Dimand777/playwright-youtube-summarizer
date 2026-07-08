@@ -1,7 +1,19 @@
 import { test, expect } from '../fixtures/test-base';
 import { translations } from '../lib/i18n';
 
+/**
+ * Suite: Localization Verification (RU / EN)
+ * Tests application support for multiple locales, ensuring labels, titles, 
+ * navigation links, and placeholders dynamically switch languages accurately.
+ */
 test.describe('Localization Verification (RU / EN)', () => {
+  
+  /**
+   * Test Scenario: Display landing page components in Russian language by default.
+   * Steps:
+   * 1. Navigate to the landing page root.
+   * 2. Verify header logo, headings, subtitle, placeholders, and buttons match Russian translations dictionary keys.
+   */
   test('should display landing page components in Russian language by default', async ({ landingPage }) => {
     const tRu = translations.ru.landing;
     const hRu = translations.ru.header;
@@ -24,6 +36,14 @@ test.describe('Localization Verification (RU / EN)', () => {
     await expect(landingPage.submitButton).toContainText(tRu.btnSummarize);
   });
 
+  /**
+   * Test Scenario: Dynamically translate all page elements to English on switcher click.
+   * Steps:
+   * 1. Navigate to the landing page root.
+   * 2. Click the language switcher link/button to switch to English ('EN').
+   * 3. Verify the browser URL contains the `/en` locale indicator.
+   * 4. Verify that the logo, headings, subtitles, placeholders, and action buttons are translated into English.
+   */
   test('should dynamically translate all page elements to English on switcher click', async ({ landingPage }) => {
     const tEn = translations.en.landing;
     const hEn = translations.en.header;
@@ -52,3 +72,4 @@ test.describe('Localization Verification (RU / EN)', () => {
     await expect(landingPage.submitButton).toContainText(tEn.btnSummarize);
   });
 });
+

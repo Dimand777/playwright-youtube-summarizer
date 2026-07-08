@@ -1,5 +1,7 @@
 # 🎭 Playwright E2E Test Automation Framework for AI YouTube Summarizer
 
+[![Playwright Tests](https://github.com/Dimand777/playwright-youtube-summarizer/actions/workflows/playwright.yml/badge.svg)](https://github.com/Dimand777/playwright-youtube-summarizer/actions/workflows/playwright.yml)
+
 This repository contains a professional test automation framework for E2E testing of the **AI YouTube Summarizer** web application ([Production Website](https://ai-youtube-summarizer-zdia.vercel.app/)).
 
 The source code for the target web application is located in a sibling repository: [ai-youtube-summarizer](https://github.com/Dimand777/ai-youtube-summarizer).
@@ -66,4 +68,14 @@ docker run --rm -v $(pwd)/playwright-report:/app/playwright-report playwright-te
 ## ⚙️ CI/CD Pipelines
 
 - **Jenkins**: Runs Playwright tests inside Docker and uses `System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")` to bypass strict browser CSP limits, rendering interactive reports directly in Jenkins build dashboards.
-- **GitHub Actions**: Pipeline triggered on push or Pull Requests to `main`, saving HTML reports as ZIP artifacts.
+- **GitHub Actions**: Pipeline triggered on push/pull requests to `main`/`master`, as well as manual triggers via `workflow_dispatch`. Tests are executed in an isolated Docker container and reports are automatically published to GitHub Pages.
+
+### 📊 How to Access GitHub Actions & Reports:
+1. **GitHub Actions Tab**:
+   Go to the [Actions](https://github.com/Dimand777/playwright-youtube-summarizer/actions) tab in the repository to view execution history, live logs, and download the zipped `playwright-report` from the **Artifacts** section at the bottom of any run.
+2. **Interactive HTML Report**:
+   The latest test execution report is automatically published and hosted online:
+   👉 **[Live Playwright HTML Report](https://dimand777.github.io/playwright-youtube-summarizer/)**
+
+> [!NOTE]
+> Make sure GitHub Pages deployment is enabled on your repository under **Settings > Pages** and configured to build and deploy from the `gh-pages` branch.
