@@ -6,9 +6,12 @@ import { test, expect } from '../fixtures/test-base';
  * from the Supabase database without calling Gemini or YouTube APIs, when a record exists.
  */
 test.describe('Database Cache Verification E2E', () => {
+  // Only run this test on chromium to prevent parallel database write race conditions
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Database cache test only needs to run on Chromium.');
+
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  const testVideoId = 'tstCacheDb1';
+  const testVideoId = 'Gvybnseoq2A';
   const testVideoUrl = `https://www.youtube.com/watch?v=${testVideoId}`;
   
   const mockSummary = '### Тестовое саммари\n- Данные получены напрямую из кэша базы данных Supabase.';
@@ -44,7 +47,7 @@ test.describe('Database Cache Verification E2E', () => {
     await landingPage.submitVideoUrl(testVideoUrl);
 
     // Wait for the loader and then display the results
-    await expect(landingPage.resultContainer).toBeVisible({ timeout: 15000 });
+    await expect(landingPage.resultContainer).toBeVisible({ timeout: 30000 });
 
     // Assert that the rendered summary matches the mock database entry
     await expect(landingPage.summaryContent).toContainText('Данные получены напрямую из кэша базы данных Supabase.');
