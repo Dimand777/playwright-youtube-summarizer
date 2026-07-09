@@ -8,7 +8,8 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:debug": "playwright test --debug",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "bot": "ts-node telegram-bot.ts"
   },
   "keywords": [
     "playwright",
@@ -24,6 +25,8 @@
     "@playwright/test": "^1.45.0",
     "@types/node": "^20.11.0",
     "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
